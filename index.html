@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
-    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trading Journey | Forex</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -36,20 +34,11 @@
             min-height: 100vh;
         }
 
-        .accent-green {
-            color: var(--acid-green);
-        }
-
-        .accent-pink {
-            color: var(--neon-pink);
-        }
-
-        .accent-purple {
-            color: var(--be-purple);
-        }
-
-        input,
-        textarea {
+        .accent-green { color: var(--acid-green); }
+        .accent-pink { color: var(--neon-pink); }
+        .accent-purple { color: var(--be-purple); }
+        
+        input, textarea {
             background-color: var(--input-bg) !important;
             border: 1px solid #222 !important;
             color: white !important;
@@ -61,10 +50,14 @@
             width: 100%;
         }
 
-        input:focus,
-        textarea:focus {
+        input:focus, textarea:focus {
             border-color: var(--acid-green) !important;
             background-color: #1A1A1A !important;
+        }
+
+        input[readonly] {
+            color: #666 !important;
+            cursor: default;
         }
 
         .input-with-sign {
@@ -83,8 +76,23 @@
             text-transform: uppercase;
         }
 
+        .auto-suffix {
+            position: absolute;
+            right: 0.8rem;
+            font-size: 0.7rem;
+            color: #444;
+            font-weight: 700;
+            pointer-events: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
         .input-with-sign input {
             padding-left: 1.8rem !important;
+        }
+
+        .input-with-auto-suffix input {
+            padding-right: 6.5rem !important;
         }
 
         .btn-primary {
@@ -113,13 +121,11 @@
             letter-spacing: 0.05em;
             font-size: 0.65rem;
         }
-
         .btn-secondary:hover {
             color: #888;
             border-color: #444;
         }
 
-        /* Tabla */
         .table-container {
             width: 100%;
             max-width: 100vw;
@@ -148,58 +154,20 @@
             font-size: 0.55rem;
         }
 
-        .col-n {
-            width: 40px;
-        }
+        .col-n { width: 40px; }
+        .col-fecha { width: 70px; }
+        .col-par { width: 90px; }
+        .col-accion { width: 70px; }
+        .col-sl { width: 60px; }
+        .col-conf { width: 90px; } 
+        .col-com { width: auto; text-align: center !important; }
+        .col-screen { width: 110px; }
+        .col-perc { width: 75px; }
+        .col-res { width: 95px; }
+        .col-val { width: 115px; } 
+        .col-del { width: 60px; } 
 
-        .col-fecha {
-            width: 70px;
-        }
-
-        .col-par {
-            width: 90px;
-        }
-
-        .col-accion {
-            width: 70px;
-        }
-
-        .col-sl {
-            width: 60px;
-        }
-
-        .col-conf {
-            width: 90px;
-        }
-
-        .col-com {
-            width: auto;
-            text-align: center !important;
-        }
-
-        .col-screen {
-            width: 100px;
-        }
-
-        .col-perc {
-            width: 70px;
-        }
-
-        .col-res {
-            width: 90px;
-        }
-
-        .col-val {
-            width: 110px;
-        }
-
-        .col-del {
-            width: 60px;
-        }
-
-        .trade-row:hover {
-            background-color: var(--row-hover) !important;
-        }
+        .trade-row:hover { background-color: var(--row-hover) !important; }
 
         td {
             padding: 4px 2px;
@@ -207,102 +175,65 @@
             text-align: center;
             height: 36px;
             white-space: nowrap;
-            font-size: 0.78rem;
+            font-size: 0.78rem; 
             color: #E5E5E5;
-        }
-
-        /* Separadores Sólidos Originales */
-        .week-separator td {
-            border-bottom: 0;
-            padding: 10px 0;
-            height: auto;
-        }
-
-        .week-line {
-            height: 1px;
-            width: 100%;
-            background-color: #1A1A1A;
         }
 
         .month-separator td {
             border-bottom: 0;
-            padding: 25px 0 15px 0;
+            padding: 25px 0 15px 0; 
             height: auto;
             text-align: center;
         }
-
         .month-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-
         .month-title-row {
             display: flex;
             align-items: center;
             width: 100%;
         }
-
         .month-line-solid {
             height: 1px;
             flex-grow: 1;
-            background-color: #FFFFFF;
+            background-color: #FFFFFF; 
         }
-
         .month-label {
             font-size: 11px;
             font-weight: 400;
-            /* Restaurado estilo anterior */
             letter-spacing: 0.8em;
-            /* Restaurado estilo anterior */
             text-transform: uppercase;
             color: #FFF;
             padding: 0 40px;
             cursor: pointer;
         }
 
-        /* Diseño de Stats Restaurado */
         .month-stats-row {
             display: flex;
             gap: 20px;
             font-size: 7px;
-            /* Restaurado estilo anterior */
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            /* Restaurado estilo anterior */
             color: #222;
-            /* Restaurado estilo anterior */
             transition: opacity 0.3s;
         }
+        .month-stats-row.hidden-stats { display: none; }
+        .stat-val { color: #333; font-weight: 500; }
 
-        .month-stats-row.hidden-stats {
-            display: none;
-        }
-
-        .stat-val {
-            color: #333;
-            font-weight: 500;
-        }
-
-        /* Restaurado estilo anterior */
-
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(8px);
             z-index: 100;
             justify-content: center;
             align-items: center;
         }
-
-        .modal.active {
-            display: flex;
-        }
-
+        .modal.active { display: flex; }
         .modal-content {
             background-color: var(--modal-bg);
             border: 1px solid #1A1A1A;
@@ -325,7 +256,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .custom-select-options {
             display: none;
             position: absolute;
@@ -337,12 +267,7 @@
             border-radius: 10px;
             z-index: 150;
         }
-
-        .custom-select-options div {
-            padding: 0.6rem 1rem;
-            transition: background 0.2s;
-            font-size: 0.85rem;
-        }
+        .custom-select-options div { padding: 0.6rem 1rem; transition: background 0.2s; font-size: 0.85rem; }
 
         #global-delete-confirm {
             display: none;
@@ -353,41 +278,15 @@
             z-index: 9999;
             width: 110px;
         }
+        #global-delete-confirm div { padding: 10px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; cursor: pointer; text-align: center; }
 
-        #global-delete-confirm div {
-            padding: 10px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            text-align: center;
-        }
+        .result-win { color: var(--acid-green); font-weight: 900; }
+        .result-loss { color: var(--neon-pink); font-weight: 900; }
+        .result-be { color: var(--be-purple); font-weight: 900; }
 
-        .result-win {
-            color: var(--acid-green);
-            font-weight: 900;
-        }
-
-        .result-loss {
-            color: var(--neon-pink);
-            font-weight: 900;
-        }
-
-        .result-be {
-            color: var(--be-purple);
-            font-weight: 900;
-        }
-
-        .arrow-down {
-            width: 0;
-            height: 0;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 4px solid #555;
-        }
+        .arrow-down { width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid #555; }
     </style>
 </head>
-
 <body class="p-4 md:p-8">
 
     <header class="w-full max-w-[1600px] mb-10 flex justify-between items-center px-4">
@@ -416,7 +315,7 @@
                         <th class="col-perc">%</th>
                         <th class="col-res">Resultado</th>
                         <th class="col-val">Resultado $</th>
-                        <th class="col-del"></th>
+                        <th class="col-del"></th> 
                     </tr>
                 </thead>
                 <tbody id="trades-body"></tbody>
@@ -424,138 +323,98 @@
         </div>
     </main>
 
-    <!-- Modal Form -->
     <div id="modal" class="modal" onclick="if(event.target == this) closeModal()">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-col">
-                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] mb-0.5">Gestión de Trade
-                        2026</span>
-                    <h2 id="modal-title" class="text-lg font-bold uppercase tracking-tight">REGISTRAR <span
-                            class="accent-green">TRADE</span></h2>
+                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] mb-0.5">Gestión de Trade 2026</span>
+                    <h2 id="modal-title" class="text-lg font-bold uppercase tracking-tight">REGISTRAR <span class="accent-green">TRADE</span></h2>
                 </div>
                 <button onclick="closeModal()" class="text-gray-500 hover:text-white transition-all text-lg">✕</button>
             </div>
-
+            
             <form id="trade-form" class="space-y-4">
                 <input type="hidden" id="f-id">
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex flex-col">
-                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Fecha
-                            (DD/MM)</label>
-                        <input type="text" id="f-fecha" placeholder="DD/MM" maxlength="5" oninput="maskDate(this)"
-                            required>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Fecha (DD/MM)</label>
+                        <div class="input-with-sign input-with-auto-suffix">
+                            <input type="text" id="f-fecha" placeholder="DD/MM" maxlength="5" oninput="handleFechaInput(this)" required>
+                            <span id="day-display" class="auto-suffix"></span>
+                            <input type="hidden" id="f-screen-name" value="">
+                        </div>
                     </div>
                     <div class="flex flex-col">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Par</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Par</label>
                         <input type="text" id="f-par" placeholder="EURUSD" required>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-4">
                     <div class="flex flex-col relative">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Acción</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Acción</label>
                         <div class="custom-select" onclick="toggleSelect('opt-accion')">
                             <span id="selected-accion" class="accent-green font-bold">BUY</span>
                             <div class="arrow-down"></div>
                             <div id="opt-accion" class="custom-select-options">
-                                <div onclick="selectVal('accion', 'Buy', 'BUY', 'accent-green')"
-                                    class="hover:bg-zinc-900 accent-green font-bold">BUY</div>
-                                <div onclick="selectVal('accion', 'Sell', 'SELL', 'accent-pink')"
-                                    class="hover:bg-zinc-900 accent-pink font-bold">SELL</div>
+                                <div onclick="selectVal('accion', 'Buy', 'BUY', 'accent-green')" class="hover:bg-zinc-900 accent-green font-bold">BUY</div>
+                                <div onclick="selectVal('accion', 'Sell', 'SELL', 'accent-pink')" class="hover:bg-zinc-900 accent-pink font-bold">SELL</div>
                             </div>
                         </div>
                         <input type="hidden" id="f-accion" value="Buy">
                     </div>
                     <div class="flex flex-col">
-                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">SL
-                            Pips</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">SL Pips</label>
                         <input type="number" id="f-sl" step="0.1">
                     </div>
                     <div class="flex flex-col">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Confirmaciones</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Confirmaciones</label>
                         <input type="text" id="f-confir">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-3 gap-4">
                     <div class="flex flex-col relative">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Resultado</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Resultado</label>
                         <div class="custom-select" onclick="toggleSelect('opt-resultado')">
                             <span id="selected-resultado" class="accent-green font-bold">WIN</span>
                             <div class="arrow-down"></div>
                             <div id="opt-resultado" class="custom-select-options">
-                                <div onclick="selectVal('resultado', 'Win', 'WIN', 'accent-green')"
-                                    class="hover:bg-zinc-900 accent-green font-bold">WIN</div>
-                                <div onclick="selectVal('resultado', 'Loss', 'LOSS', 'accent-pink')"
-                                    class="hover:bg-zinc-900 accent-pink font-bold">LOSS</div>
-                                <div onclick="selectVal('resultado', 'BE', 'BREAK EVEN', 'accent-purple')"
-                                    class="hover:bg-zinc-900 accent-purple font-bold">BREAK EVEN</div>
+                                <div onclick="selectVal('resultado', 'Win', 'WIN', 'accent-green')" class="hover:bg-zinc-900 accent-green font-bold">WIN</div>
+                                <div onclick="selectVal('resultado', 'Loss', 'LOSS', 'accent-pink')" class="hover:bg-zinc-900 accent-pink font-bold">LOSS</div>
+                                <div onclick="selectVal('resultado', 'BE', 'BREAK EVEN', 'accent-purple')" class="hover:bg-zinc-900 accent-purple font-bold">BREAK EVEN</div>
                             </div>
                         </div>
                         <input type="hidden" id="f-resultado" value="Win">
                     </div>
                     <div class="flex flex-col">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">%</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Resultado $</label>
                         <div class="input-with-sign">
-                            <span id="sign-perc" class="sign-prefix">+</span>
-                            <input type="number" id="f-porcentaje" step="0.01">
+                            <span id="sign-usd" class="sign-prefix">+</span>
+                            <input type="number" id="f-usd" step="any" oninput="handleUsdInput(this)" required>
                         </div>
                     </div>
                     <div class="flex flex-col">
-                        <label
-                            class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Resultado
-                            $</label>
-                        <div class="input-with-sign">
-                            <span id="sign-usd" class="sign-prefix">+</span>
-                            <input type="number" id="f-usd" step="0.01" required>
-                        </div>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">%</label>
+                        <input type="text" id="f-porcentaje-display" placeholder="0%" readonly>
+                        <input type="hidden" id="f-porcentaje" value="0">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 gap-4">
                     <div class="flex flex-col">
-                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">URL de
-                            Captura</label>
+                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">URL de Captura</label>
                         <input type="text" id="f-screen-url" placeholder="TradingView Link">
-                    </div>
-                    <div class="flex flex-col relative">
-                        <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Texto
-                            Link (Día)</label>
-                        <div class="custom-select" onclick="toggleSelect('opt-day')">
-                            <span id="selected-screen-name" class="text-white font-medium">LUNES</span>
-                            <div class="arrow-down"></div>
-                            <div id="opt-day" class="custom-select-options">
-                                <div onclick="selectVal('screen-name', 'LUNES', 'LUNES', '')" class="hover:bg-zinc-900">
-                                    LUNES</div>
-                                <div onclick="selectVal('screen-name', 'MARTES', 'MARTES', '')"
-                                    class="hover:bg-zinc-900">MARTES</div>
-                                <div onclick="selectVal('screen-name', 'MIERCOLES', 'MIÉRCOLES', '')"
-                                    class="hover:bg-zinc-900">MIÉRCOLES</div>
-                                <div onclick="selectVal('screen-name', 'JUEVES', 'JUEVES', '')"
-                                    class="hover:bg-zinc-900">JUEVES</div>
-                                <div onclick="selectVal('screen-name', 'VIERNES', 'VIERNES', '')"
-                                    class="hover:bg-zinc-900">VIERNES</div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="f-screen-name" value="LUNES">
                     </div>
                 </div>
 
                 <div class="flex flex-col">
-                    <label
-                        class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Comentario</label>
+                    <label class="text-[9px] text-gray-500 uppercase mb-1 ml-1 tracking-widest font-semibold">Comentario</label>
                     <textarea id="f-comentario" rows="2"></textarea>
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" id="btn-submit"
-                        class="btn-primary w-full py-4 text-[11px] tracking-[0.3em]">GUARDAR TRADE</button>
+                    <button type="submit" id="btn-submit" class="btn-primary w-full py-4 text-[11px] tracking-[0.3em]">GUARDAR TRADE</button>
                 </div>
             </form>
         </div>
@@ -563,66 +422,195 @@
 
     <div id="global-delete-confirm">
         <div id="btn-confirm-delete" class="text-red-500 hover:bg-zinc-900">BORRAR</div>
-        <div onclick="hideDeleteConfirm()" class="text-zinc-500 hover:bg-zinc-900 border-t border-zinc-900">CANCELAR
-        </div>
+        <div onclick="hideDeleteConfirm()" class="text-zinc-500 hover:bg-zinc-900 border-t border-zinc-900">CANCELAR</div>
     </div>
 
-    <script type="module">
-        // IMPORTAR FIREBASE
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        // 1. CONFIGURACIÓN (Pega aquí tus datos de Firebase Console)
-        const firebaseConfig = {
-            apiKey: "AIzaSyChKRvkT_H4aBrEIIPtSke0D7sNwGlNd_o",
-            authDomain: "database-anonima.firebaseapp.com",
-            projectId: "database-anonima",
-            storageBucket: "database-anonima.firebasestorage.app",
-            messagingSenderId: "150261844191",
-            appId: "1:150261844191:web:4313ab788cbba02105016a",
-            measurementId: "G-M6PZD9CPJF"
-        };
-
-        // Inicializar Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const tradesCollection = collection(db, "trades");
-
-        // VARIABLES DE ESTADO
-        let trades = [];
+    <script>
+        const ACCOUNT_CAPITAL = 5000;
+        let trades = JSON.parse(localStorage.getItem('trading_journey_data')) || [];
         let hiddenMonths = JSON.parse(localStorage.getItem('trading_hidden_months')) || [];
         let showStats = localStorage.getItem('trading_show_stats') !== 'false';
 
-        // --- FUNCIONES DE BASE DE DATOS ---
+        // Helper para formatear números sin decimales innecesarios
+        function smartFormat(num) {
+            // Si es un número entero, mostrarlo sin decimales. Si no, mostrar hasta 2 decimales.
+            return Number.isInteger(num) ? num.toString() : parseFloat(num.toFixed(2)).toString();
+        }
 
-        // Cargar datos desde Firebase
-        async function loadTrades() {
-            try {
-                const querySnapshot = await getDocs(tradesCollection);
-                trades = [];
-                querySnapshot.forEach((doc) => {
-                    trades.push({ id: doc.id, ...doc.data() });
-                });
-                // Ordenar por fecha manualmente
-                trades.sort((a, b) => parseTradeDate(a.fecha) - parseTradeDate(b.fecha));
-                renderTable();
-            } catch (e) {
-                console.error("Error al cargar:", e);
+        function openModal(editId = null) {
+            const modal = document.getElementById('modal');
+            const form = document.getElementById('trade-form');
+            form.reset();
+            
+            const fechaInput = document.getElementById('f-fecha');
+            const parInput = document.getElementById('f-par');
+            
+            if (editId) {
+                const t = trades.find(item => item.id === editId);
+                document.getElementById('f-id').value = t.id;
+                fechaInput.value = t.fecha;
+                parInput.value = t.par;
+                document.getElementById('f-sl').value = t.sl;
+                document.getElementById('f-confir').value = t.confir;
+                
+                const absUsd = Math.abs(t.usd);
+                document.getElementById('f-usd').value = absUsd;
+                document.getElementById('f-porcentaje').value = t.porcentaje;
+                document.getElementById('f-porcentaje-display').value = smartFormat(Math.abs(t.porcentaje)) + "%";
+                
+                document.getElementById('f-screen-url').value = t.screenUrl;
+                document.getElementById('f-comentario').value = t.comentario;
+                document.getElementById('f-screen-name').value = t.screenName;
+                document.getElementById('day-display').innerText = t.screenName;
+                
+                selectVal('accion', t.accion, t.accion.toUpperCase(), t.accion === 'Buy' ? 'accent-green' : 'accent-pink');
+                selectVal('resultado', t.resultado, t.resultado.toUpperCase(), t.resultado === 'Win' ? 'accent-green' : (t.resultado === 'Loss' ? 'accent-pink' : 'accent-purple'));
+                
+                document.getElementById('modal-title').innerHTML = `EDITAR <span class="accent-green">TRADE</span>`;
+                document.getElementById('btn-submit').innerText = "ACTUALIZAR TRADE";
+            } else {
+                document.getElementById('f-id').value = "";
+                
+                const now = new Date();
+                const d = String(now.getDate()).padStart(2, '0');
+                const m = String(now.getMonth() + 1).padStart(2, '0');
+                fechaInput.value = `${d}/${m}`;
+                parInput.value = "EURUSD";
+                
+                updateDayAutomatic(fechaInput.value);
+                
+                selectVal('accion', 'Buy', 'BUY', 'accent-green');
+                selectVal('resultado', 'Win', 'WIN', 'accent-green');
+                
+                document.getElementById('modal-title').innerHTML = `REGISTRAR <span class="accent-green">TRADE</span>`;
+                document.getElementById('btn-submit').innerText = "GUARDAR TRADE";
+                
+                document.getElementById('f-porcentaje-display').value = "";
+                document.getElementById('f-porcentaje').value = "0";
+            }
+            modal.classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+
+        function handleFechaInput(input) {
+            maskDate(input);
+            updateDayAutomatic(input.value);
+        }
+
+        function maskDate(input) {
+            let v = input.value.replace(/\D/g,'');
+            if (v.length > 2) input.value = v.substring(0, 2) + '/' + v.substring(2, 4);
+            else input.value = v;
+        }
+
+        function updateDayAutomatic(fechaStr) {
+            const dayDisplay = document.getElementById('day-display');
+            const screenNameHidden = document.getElementById('f-screen-name');
+            
+            if (fechaStr.length === 5) {
+                const [d, m] = fechaStr.split('/');
+                const dateObj = new Date(2026, parseInt(m) - 1, parseInt(d));
+                
+                if (!isNaN(dateObj.getTime())) {
+                    const days = ["DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"];
+                    const dayName = days[dateObj.getDay()];
+                    dayDisplay.innerText = dayName;
+                    screenNameHidden.value = dayName;
+                    return;
+                }
+            }
+            dayDisplay.innerText = "";
+            screenNameHidden.value = "";
+        }
+
+        function handleUsdInput(input) {
+            const val = parseFloat(input.value);
+            const percDisplayInput = document.getElementById('f-porcentaje-display');
+            const fPercHidden = document.getElementById('f-porcentaje');
+            const res = document.getElementById('f-resultado').value;
+
+            if (!isNaN(val) && val !== 0) {
+                const calculatedPerc = (val / ACCOUNT_CAPITAL) * 100;
+                percDisplayInput.value = smartFormat(calculatedPerc) + "%";
+                fPercHidden.value = (res === 'Loss') ? -Math.abs(calculatedPerc) : (res === 'BE' ? 0 : Math.abs(calculatedPerc));
+            } else {
+                percDisplayInput.value = "";
+                fPercHidden.value = "0";
             }
         }
 
-        // Guardar o Editar
-        document.getElementById('trade-form').addEventListener('submit', async function (e) {
+        function toggleSelect(id) {
+            const el = document.getElementById(id);
+            const isVisible = el.style.display === 'block';
+            document.querySelectorAll('.custom-select-options').forEach(opt => opt.style.display = 'none');
+            el.style.display = isVisible ? 'none' : 'block';
+        }
+
+        function selectVal(type, val, label, colorClass) {
+            document.getElementById(`f-${type}`).value = val;
+            const display = document.getElementById(`selected-${type}`);
+            display.innerText = label;
+            if(colorClass) display.className = colorClass + " font-bold";
+            else display.className = "text-white font-medium";
+            
+            if(type === 'resultado') {
+                updateSigns(val);
+                handleUsdInput(document.getElementById('f-usd'));
+            }
+        }
+
+        function updateSigns(val) {
+            const sUsd = document.getElementById('sign-usd');
+            if(val === 'Win') { sUsd.innerText = '+'; }
+            else if(val === 'Loss') { sUsd.innerText = '-'; }
+            else { sUsd.innerText = ''; }
+        }
+
+        function toggleMonth(month) {
+            if (hiddenMonths.includes(month)) hiddenMonths = hiddenMonths.filter(m => m !== month);
+            else hiddenMonths.push(month);
+            localStorage.setItem('trading_hidden_months', JSON.stringify(hiddenMonths));
+            renderTable();
+        }
+
+        function toggleGlobalStats() {
+            showStats = !showStats;
+            localStorage.setItem('trading_show_stats', showStats);
+            document.getElementById('btn-toggle-stats').innerText = showStats ? "OCULTAR STATS" : "MOSTRAR STATS";
+            renderTable();
+        }
+
+        function parseTradeDate(fechaStr) {
+            if(!fechaStr || !fechaStr.includes('/')) return new Date(0);
+            const [d, m] = fechaStr.split('/');
+            return new Date(2026, parseInt(m) - 1, parseInt(d));
+        }
+
+        document.getElementById('trade-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const editId = document.getElementById('f-id').value;
             const res = document.getElementById('f-resultado').value;
             const rawUsd = parseFloat(document.getElementById('f-usd').value) || 0;
-            const rawP = parseFloat(document.getElementById('f-porcentaje').value) || 0;
-
             const usdValue = res === 'Loss' ? -Math.abs(rawUsd) : (res === 'BE' ? 0 : Math.abs(rawUsd));
-            const percValue = res === 'Loss' ? -Math.abs(rawP) : (res === 'BE' ? 0 : Math.abs(rawP));
+            const percValue = parseFloat(document.getElementById('f-porcentaje').value) || 0;
+            
+            // Forzar actualización del nombre del día si no se detectó
+            let dayName = document.getElementById('f-screen-name').value;
+            if (!dayName || dayName === "LINK") {
+                const fechaStr = document.getElementById('f-fecha').value;
+                if (fechaStr.length === 5) {
+                    const [d, m] = fechaStr.split('/');
+                    const dateObj = new Date(2026, parseInt(m) - 1, parseInt(d));
+                    if (!isNaN(dateObj.getTime())) {
+                        const days = ["DOMINGO", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"];
+                        dayName = days[dateObj.getDay()];
+                    }
+                }
+            }
 
             const tradeData = {
+                id: editId ? parseInt(editId) : Date.now(),
                 fecha: document.getElementById('f-fecha').value,
                 par: document.getElementById('f-par').value.toUpperCase(),
                 accion: document.getElementById('f-accion').value,
@@ -632,114 +620,26 @@
                 porcentaje: percValue,
                 usd: usdValue,
                 screenUrl: document.getElementById('f-screen-url').value,
-                screenName: document.getElementById('f-screen-name').value,
+                screenName: dayName || "LINK",
                 comentario: document.getElementById('f-comentario').value
             };
 
-            try {
-                if (editId) {
-                    await updateDoc(doc(db, "trades", editId), tradeData);
-                } else {
-                    await addDoc(tradesCollection, tradeData);
-                }
-                closeModal();
-                loadTrades();
-            } catch (e) {
-                alert("Error al guardar en Firebase: " + e);
-            }
+            if (editId) {
+                const index = trades.findIndex(t => t.id == editId);
+                trades[index] = tradeData;
+            } else trades.push(tradeData);
+            
+            trades.sort((a, b) => parseTradeDate(a.fecha) - parseTradeDate(b.fecha));
+            saveAndRender();
+            closeModal();
         });
 
-        // Borrar
-        window.deleteTrade = async function (id) {
-            await deleteDoc(doc(db, "trades", id));
-            loadTrades();
-        };
-
-        // --- FUNCIONES DE INTERFAZ (AJUSTADAS PARA MODULE) ---
-
-        window.openModal = function (editId = null) {
-            const modal = document.getElementById('modal');
-            document.getElementById('trade-form').reset();
-            if (editId) {
-                const t = trades.find(item => item.id === editId);
-                document.getElementById('f-id').value = t.id;
-                document.getElementById('f-fecha').value = t.fecha;
-                document.getElementById('f-par').value = t.par;
-                document.getElementById('f-sl').value = t.sl;
-                document.getElementById('f-confir').value = t.confir;
-                document.getElementById('f-porcentaje').value = Math.abs(t.porcentaje);
-                document.getElementById('f-usd').value = Math.abs(t.usd);
-                document.getElementById('f-screen-url').value = t.screenUrl;
-                document.getElementById('f-comentario').value = t.comentario;
-                selectVal('accion', t.accion, t.accion.toUpperCase(), t.accion === 'Buy' ? 'accent-green' : 'accent-pink');
-                selectVal('resultado', t.resultado, t.resultado.toUpperCase(), t.resultado === 'Win' ? 'accent-green' : (t.resultado === 'Loss' ? 'accent-pink' : 'accent-purple'));
-                selectVal('screen-name', t.screenName, t.screenName, '');
-                document.getElementById('modal-title').innerHTML = `EDITAR <span class="accent-green">TRADE</span>`;
-                document.getElementById('btn-submit').innerText = "ACTUALIZAR TRADE";
-            } else {
-                document.getElementById('f-id').value = "";
-                selectVal('accion', 'Buy', 'BUY', 'accent-green');
-                selectVal('resultado', 'Win', 'WIN', 'accent-green');
-                selectVal('screen-name', 'LUNES', 'LUNES', '');
-                document.getElementById('modal-title').innerHTML = `REGISTRAR <span class="accent-green">TRADE</span>`;
-                document.getElementById('btn-submit').innerText = "GUARDAR TRADE";
-            }
-            modal.classList.add('active');
-        };
-
-        window.closeModal = function () { document.getElementById('modal').classList.remove('active'); };
-
-        window.maskDate = function (input) {
-            let v = input.value.replace(/\D/g, '');
-            if (v.length > 2) input.value = v.substring(0, 2) + '/' + v.substring(2, 4);
-            else input.value = v;
-        };
-
-        window.toggleSelect = function (id) {
-            const el = document.getElementById(id);
-            const isVisible = el.style.display === 'block';
-            document.querySelectorAll('.custom-select-options').forEach(opt => opt.style.display = 'none');
-            el.style.display = isVisible ? 'none' : 'block';
-        };
-
-        window.selectVal = function (type, val, label, colorClass) {
-            document.getElementById(`f-${type}`).value = val;
-            const display = document.getElementById(`selected-${type}`);
-            display.innerText = label;
-            if (colorClass) display.className = colorClass + " font-bold";
-            else display.className = "text-white font-medium";
-            if (type === 'resultado') updateSigns(val);
-        };
-
-        function updateSigns(val) {
-            const sPerc = document.getElementById('sign-perc');
-            const sUsd = document.getElementById('sign-usd');
-            if (val === 'Win') { sPerc.innerText = '+'; sUsd.innerText = '+'; }
-            else if (val === 'Loss') { sPerc.innerText = '-'; sUsd.innerText = '-'; }
-            else { sPerc.innerText = ''; sUsd.innerText = ''; }
+        function deleteTrade(id) {
+            trades = trades.filter(t => t.id !== id);
+            saveAndRender();
         }
 
-        window.toggleMonth = function (month) {
-            if (hiddenMonths.includes(month)) hiddenMonths = hiddenMonths.filter(m => m !== month);
-            else hiddenMonths.push(month);
-            localStorage.setItem('trading_hidden_months', JSON.stringify(hiddenMonths));
-            renderTable();
-        };
-
-        window.toggleGlobalStats = function () {
-            showStats = !showStats;
-            localStorage.setItem('trading_show_stats', showStats);
-            document.getElementById('btn-toggle-stats').innerText = showStats ? "OCULTAR STATS" : "MOSTRAR STATS";
-            renderTable();
-        };
-
-        function parseTradeDate(fechaStr) {
-            if (!fechaStr || !fechaStr.includes('/')) return new Date(0);
-            const [d, m] = fechaStr.split('/');
-            return new Date(2026, parseInt(m) - 1, parseInt(d));
-        }
-
-        window.showDeleteConfirm = function (event, id) {
+        function showDeleteConfirm(event, id) {
             event.stopPropagation();
             const confirmBox = document.getElementById('global-delete-confirm');
             const rect = event.target.getBoundingClientRect();
@@ -747,9 +647,14 @@
             confirmBox.style.left = `${rect.left + window.scrollX - 80}px`;
             confirmBox.style.display = 'block';
             document.getElementById('btn-confirm-delete').onclick = () => { deleteTrade(id); hideDeleteConfirm(); };
-        };
+        }
 
-        window.hideDeleteConfirm = function () { document.getElementById('global-delete-confirm').style.display = 'none'; };
+        function hideDeleteConfirm() { document.getElementById('global-delete-confirm').style.display = 'none'; }
+
+        function saveAndRender() {
+            localStorage.setItem('trading_journey_data', JSON.stringify(trades));
+            renderTable();
+        }
 
         function getMonthName(dateStr) {
             const m = parseInt(dateStr.split('/')[1]) - 1;
@@ -763,32 +668,36 @@
 
             trades.forEach((t, i) => {
                 const currentMonthNum = t.fecha ? t.fecha.split('/')[1] : null;
+
                 if (currentMonthNum && currentMonthNum !== lastMonthNum) {
                     const tradesInMonth = trades.filter(x => x.fecha && x.fecha.split('/')[1] === currentMonthNum);
                     const totalTrades = tradesInMonth.length;
                     const totalPerc = tradesInMonth.reduce((acc, curr) => acc + (parseFloat(curr.porcentaje) || 0), 0);
                     const isHidden = hiddenMonths.includes(currentMonthNum);
+
                     const mSep = document.createElement('tr');
                     mSep.className = 'month-separator';
                     const statsVisibilityClass = (!showStats || isHidden) ? 'hidden-stats' : '';
+
                     mSep.innerHTML = `
-                    <td colspan="12">
-                        <div class="month-container">
-                            <div class="month-title-row">
-                                <div class="month-line-solid"></div>
-                                <div class="month-label" onclick="toggleMonth('${currentMonthNum}')">
-                                    ${getMonthName(t.fecha)} ${isHidden ? '▼' : '▲'}
+                        <td colspan="12">
+                            <div class="month-container">
+                                <div class="month-title-row">
+                                    <div class="month-line-solid"></div>
+                                    <div class="month-label" onclick="toggleMonth('${currentMonthNum}')">
+                                        ${getMonthName(t.fecha)} ${isHidden ? '▼' : '▲'}
+                                    </div>
+                                    <div class="month-line-solid"></div>
                                 </div>
-                                <div class="month-line-solid"></div>
+                                <div class="month-stats-row ${statsVisibilityClass}">
+                                    <span>Trades Totales: <span class="stat-val">${totalTrades}</span></span>
+                                    <span>Porcentaje Total: <span class="stat-val ${totalPerc >= 0 ? 'accent-green' : 'accent-pink'}">${smartFormat(totalPerc)}%</span></span>
+                                </div>
                             </div>
-                            <div class="month-stats-row ${statsVisibilityClass}">
-                                <span>Trades Totales: <span class="stat-val">${totalTrades}</span></span>
-                                <span>Porcentaje Total: <span class="stat-val ${totalPerc >= 0 ? 'accent-green' : 'accent-pink'}">${totalPerc.toFixed(2)}%</span></span>
-                            </div>
-                        </div>
-                    </td>`;
+                        </td>`;
                     body.appendChild(mSep);
                 }
+
                 lastMonthNum = currentMonthNum;
 
                 if (!hiddenMonths.includes(currentMonthNum)) {
@@ -796,37 +705,37 @@
                     const row = document.createElement('tr');
                     row.className = 'trade-row';
                     row.innerHTML = `
-                    <td class="col-n text-zinc-800 font-medium">${i + 1}</td>
-                    <td class="col-fecha text-zinc-600">${t.fecha || ''}</td>
-                    <td class="col-par font-bold text-white">${t.par}</td>
-                    <td class="col-accion ${t.accion === 'Buy' ? 'accent-green' : 'accent-pink'} font-bold">${t.accion.toUpperCase()}</td>
-                    <td class="col-sl text-zinc-500">${t.sl || '-'}</td>
-                    <td class="col-conf text-zinc-500 truncate px-1">${t.confir || '-'}</td>
-                    <td class="col-com text-zinc-400 px-4">${t.comentario || ''}</td>
-                    <td class="col-screen">${t.screenUrl ? `<a href="${t.screenUrl}" target="_blank" class="accent-purple font-bold tracking-tight">${t.screenName}</a>` : ''}</td>
-                    <td class="col-perc font-bold ${t.porcentaje < 0 ? 'accent-pink' : 'accent-green'}">${(t.porcentaje > 0 ? '+' : '') + t.porcentaje}%</td>
-                    <td class="col-res ${resClass}">${t.resultado.toUpperCase()}</td>
-                    <td class="col-val ${t.usd >= 0 ? 'accent-green' : 'accent-pink'} font-bold">${t.usd >= 0 ? '+$' : '-$'}${Math.abs(t.usd).toFixed(2)}</td>
-                    <td class="col-del">
-                        <div class="flex justify-center gap-3">
-                            <button onclick="openModal('${t.id}')" class="text-zinc-600 hover:text-white">✎</button>
-                            <button onclick="showDeleteConfirm(event, '${t.id}')" class="text-zinc-800 hover:text-red-600">✕</button>
-                        </div>
-                    </td>`;
+                        <td class="col-n text-zinc-800 font-medium">${i+1}</td>
+                        <td class="col-fecha text-zinc-600">${t.fecha || ''}</td>
+                        <td class="col-par font-bold text-white">${t.par}</td>
+                        <td class="col-accion ${t.accion === 'Buy' ? 'accent-green' : 'accent-pink'} font-bold">${t.accion.toUpperCase()}</td>
+                        <td class="col-sl text-zinc-500">${t.sl || '-'}</td>
+                        <td class="col-conf text-zinc-500 truncate px-1">${t.confir || '-'}</td>
+                        <td class="col-com text-zinc-400 px-4">${t.comentario || ''}</td>
+                        <td class="col-screen">${t.screenUrl ? `<a href="${t.screenUrl}" target="_blank" class="accent-purple font-bold tracking-tight">${t.screenName}</a>` : ''}</td>
+                        <td class="col-perc font-bold ${t.porcentaje < 0 ? 'accent-pink' : 'accent-green'}">${(t.porcentaje > 0 ? '+' : '') + smartFormat(t.porcentaje)}%</td>
+                        <td class="col-res ${resClass}">${t.resultado.toUpperCase()}</td>
+                        <td class="col-val ${t.usd >= 0 ? 'accent-green' : 'accent-pink'} font-bold">${t.usd >= 0 ? '+$' : '-$'}${smartFormat(Math.abs(t.usd))}</td>
+                        <td class="col-del">
+                            <div class="flex justify-center gap-3">
+                                <button onclick="openModal(${t.id})" class="text-zinc-600 hover:text-white">✎</button>
+                                <button onclick="showDeleteConfirm(event, ${t.id})" class="text-zinc-800 hover:text-red-600">✕</button>
+                            </div>
+                        </td>
+                    `;
                     body.appendChild(row);
                 }
             });
         }
 
-        window.onclick = function (e) {
+        window.onclick = function(e) {
             if (!e.target.closest('.custom-select')) document.querySelectorAll('.custom-select-options').forEach(opt => opt.style.display = 'none');
             if (!e.target.closest('#global-delete-confirm') && !e.target.closest('.col-del')) hideDeleteConfirm();
+        }
+        window.onload = () => {
+            document.getElementById('btn-toggle-stats').innerText = showStats ? "OCULTAR STATS" : "MOSTRAR STATS";
+            renderTable();
         };
-
-        // INICIO
-        loadTrades();
     </script>
 </body>
-
 </html>
-
